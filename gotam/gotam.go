@@ -3,10 +3,11 @@ package gotam
 import (
 	"runtime"
 
+	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
-func init() {
+func Init() {
 	// This is needed to arrange that main() runs on main thread.
 	// See documentation for functions that are only allowed to be called from the main thread.
 	runtime.LockOSThread()
@@ -30,6 +31,12 @@ func InitWindow(width, height int, title string) *glfw.Window {
 
 	window, err := glfw.CreateWindow(width, height, title, nil, nil)
 	if err != nil {
+		panic(err)
+	}
+
+	window.MakeContextCurrent()
+
+	if err := gl.Init(); err != nil {
 		panic(err)
 	}
 
