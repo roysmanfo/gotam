@@ -14,9 +14,13 @@ const (
 
 var deltaTime time.Duration
 
+// this may slow down the refresh rate of the window
+// when set to true, causing a loss of performance
+// but could be useful during debugging sessions
+var useFrameRateControl = false
+
 func StartWindow(window *glfw.Window) {
 	var lastTime = time.Now()
-	var frameCount int
 
 	for !window.ShouldClose() {
 
@@ -33,9 +37,7 @@ func StartWindow(window *glfw.Window) {
 		glfw.PollEvents()
 
 		// Frame rate control
-		frameCount++
-		elapsed := time.Since(lastTime)
-		if elapsed < frameTime {
+		if elapsed := time.Since(lastTime); elapsed < frameTime && useFrameRateControl {
 			time.Sleep(frameTime - elapsed)
 		}
 	}
