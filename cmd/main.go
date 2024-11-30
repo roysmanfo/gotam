@@ -8,6 +8,6 @@ func main() {
 
 	// create the window
 	// and run the game loop
-	gotam.InitWindow(640, 480, "Gotam Game Window")
+	gotam.InitWindow(1280, 720, "Gotam Game Window")
 
 }
