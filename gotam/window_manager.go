@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	targetFPS = 60
+	targetFPS = 140
 	frameTime = time.Second / targetFPS
 )
 
